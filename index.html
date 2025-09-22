@@ -9,14 +9,10 @@
 <body>
   <div class="calculator">
 
-    <div class="input-group2">
+    <header>
       <img src="image/logo-dark2.png" width="35" height="35" alt="" >
-      <h1>Калькулятор материалов</h1>
-    </div>
-
-    
-
-    <div class="input-group">        
+      <h3>Калькулятор материалов</h1>
+            
       <select id="machines">
         <option value="Fantasia">Fantasia</option>
         <option value="Fantasia2">Fantasia2</option>
@@ -33,59 +29,39 @@
         <option value="Serac2">Serac2</option>
         <option value="Sidel">Sidel</option>
         <option value="Mariane">Mariane</option>
-      </select>
-    </div>
+      </select>       
+    </header>    
 
-    <div class="input-group2">
+    <div class="input-group">
       <div>
         <label for="plan">План</label>
-        <input type="number" id="plan"  min="0" value="0">
+        <input type="number" id="plan"  min="0">
       </div>
-
       <div>
-        <label for="plan">План2</label>
-        <input type="number" id="plan2" min="0" value="0">
+        <label for="plan2">План2</label>
+        <input type="number" id="plan2" min="0">
       </div>
-
-      <div>
-        <label for="plan">Всего:</label>
-        <input type="number" id="planTotal" min="0" value="0">
-      </div>
-
-    </div>      
-        
-        
-    <div class="input-group2">
-      <div>
-                
+      <div>     
         <label for="tact">Циклы</label> <!-- interestRate => tact -->
-        <input type="number" id="tact" min="0" value="0">
+        <input type="number2" id="tact" min="0">
       </div>
-      <div>
-        <label for="interestRate">Оставшиеся циклы</label>
-        <input type="number" id="interestRate"  min="0" value="0">
-      </div>            
+    </div>        
+        
+    <div class="input-group">      
+        <p>Всего план: </p>
+        <p id="planTotal">
   	</div>
-        
-        <!-- <div class="input-group">
-            <label for="initialPayment">Первоначальный взнос (руб.)</label>
-            <input type="number" id="initialPayment" placeholder="Введите первоначальный взнос" min="0" value="1000000">
-        </div> -->
-        
-        <!-- <div class="input-group">
-            <label for="loanTerm">План (вариант отображения)</label>
-            <div class="slider-container">
-                <input type="range" id="loanTermSlider" min="1" max="150" value="0">
-                <span class="slider-value" id="loanTermValue">0</span>
-            </div>
-            <input type="number" id="loanTerm" min="1" max="30" value="0">
-        </div> -->
         
     <div class="results">
 
 			<div class="result-item">
-        <span class="result-label">Паллет готовой продукции</span>
+        <span class="result-label">Паллет ГП готово </span>
         <span id="pallet" class="result-value monthly-payment">0 </span>
+      </div>
+
+      <div class="result-item">
+        <span class="result-label">Паллет ГП нужно изготовить</span>
+        <span id="pallet2" class="result-value monthly-payment">0 </span>
       </div>
 
 			<div class="divider"></div>
@@ -94,17 +70,17 @@
             
         <div class="result-item">
           <span class="result-label">Бабин этикеток</span>
-          <span id="creditBalance" class="result-value">0</span>
+          <span id="sticker" class="result-value">0</span>
         </div>
             
         <div class="result-item">
           <span class="result-label">Бабин обратн. этикеток</span>
-          <span id="totalAmount" class="result-value total-amount">0 </span>
+          <span id="sticker2" class="result-value total-amount">0 </span>
         </div>
             
         <div class="result-item">
           <span class="result-label">Бабин фольги</span>
-          <span id="overpayment" class="result-value">0 </span>
+          <span id="foil" class="result-value">0 </span>
         </div>
     </div>
 
@@ -117,60 +93,42 @@
     const planTotalInput = document.getElementById('planTotal');
     const tactInput = document.getElementById('tact'); 						// циклы
 
-   
-    const initialPaymentInput = document.getElementById('initialPayment');
-    const loanTermInput = document.getElementById('loanTerm');
-    const loanTermSlider = document.getElementById('loanTermSlider');
-    const loanTermValue = document.getElementById('loanTermValue');
-        
     // Получаем элементы для вывода результатов
     const palletSpan = document.getElementById('pallet'); // Паллет готовой продукции
-    const creditBalanceSpan = document.getElementById('creditBalance');
-    const totalAmountSpan = document.getElementById('totalAmount');
-    const overpaymentSpan = document.getElementById('overpayment');
+    const pallet2Span = document.getElementById('pallet2'); // Паллет ГП нужно изготовить
+    const stickerSpan = document.getElementById('sticker'); // Этикетка
+    const sticker2Span = document.getElementById('sticker2'); // обратная этикетка
+    const foilSpan = document.getElementById('foil'); // Фольга
         
-    // Функция для расчета ипотеки
+    // =======> Функция для расчета
     function calculateMortgage() {
 			
       // Получаем значения из полей ввода
       const plan = parseFloat(planInput.value) || 0;
+      const plan2 = parseFloat(plan2Input.value) || 0;
+      const planTotal = parseFloat(planTotalInput.value) || 0;
       const tact = parseFloat(tactInput.value) || 0;		// циклы
 
-            // const initialPayment = parseFloat(initialPaymentInput.value) || 0;
-            // const loanTerm = parseFloat(loanTermInput.value) || 0;
-            
-            // Рассчитываем сумму кредита
-      			// const loanAmount = Math.max(flatPrice - initialPayment, 0);
-            
-            // Рассчитываем ежемесячный платеж по формуле аннуитетного платежа
-            // const monthlyInterestRate = (interestRate / 100) / 12;
-            // const numberOfPayments = loanTerm * 12;
-            
-            // let monthlyPayment = 0;
-            // if (monthlyInterestRate > 0) {
-            //     monthlyPayment = loanAmount * 
-            //         (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) / 
-            //         (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
-            // } else if (loanAmount > 0) {
-            //     monthlyPayment = loanAmount / numberOfPayments;
-            // }
-            
-            // Рассчитываем общую сумму выплат и переплату
-            // const totalAmount = monthlyPayment * numberOfPayments;
-            // const overpayment = totalAmount - loanAmount;
-            
-            // Обновляем результаты на странице
-            // monthlyPaymentSpan.textContent = monthlyPayment.toFixed(2) + ' руб.';
-      palletSpan.textContent = (tact / 240).toFixed(2);
-            // creditBalanceSpan.textContent = loanAmount.toFixed(2) + ' руб.';
-            // totalAmountSpan.textContent = totalAmount.toFixed(2) + ' руб.';
-            // overpaymentSpan.textContent = overpayment.toFixed(2) + ' руб.';
+      // palletSpan.textContent 
+      let a = palletSpan.textContent = (tact / 240).toFixed(1);
+      planTotalInput.textContent = (plan + plan2);
+      let b = planTotalInput.textContent
+      pallet2Span.textContent = (b - a).toFixed(1);
+      let c = pallet2Span.textContent
+
+      stickerSpan.textContent = (c / 6).toFixed(1);
+      sticker2Span.textContent = (c / 6).toFixed(1);
+      foilSpan.textContent = (c / 12).toFixed(1);
+
+      console.log(a);
+      // console.log(plan);
     }
         
-        // Добавляем обработчики событий для полей ввода
-        planInput.addEventListener('input', calculateMortgage);
-        tactInput.addEventListener('input', calculateMortgage);
-        // initialPaymentInput.addEventListener('input', calculateMortgage);
+    // Добавляем обработчики событий для полей ввода
+    planInput.addEventListener('input', calculateMortgage);
+    plan2Input.addEventListener('input', calculateMortgage);
+    tactInput.addEventListener('input', calculateMortgage);
+    planTotalInput.addEventListener('input', calculateMortgage);
         
         // Вызываем функцию расчета при загрузке страницы
     calculateMortgage();
