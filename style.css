@@ -53,7 +53,8 @@ h3 span{
 }
 
 select{
-	padding: 10px;
+	padding: 2px;
+	font-size: 20px;
 }
 h1 {
   text-align: center;
@@ -65,10 +66,12 @@ h1 {
 .input-group {
   display: flex;
   flex-direction: row;	
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
-
-
+.input-group-plan {
+	
+  margin-right: 5px;
+}
 
 label {
   display: block;
@@ -105,16 +108,10 @@ input[type='number2']:focus {
 input[type='number']:focus {
   border-color: #3498db;
   outline: none;
+	box-shadow: 5px 5px 10px #59b8f8(255, 88, 88);
 }
 
-.slider-container {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-top: 10px;
-}
-
-input[type='range'] {
+/* input[type='range'] {
   flex: 1;
   height: 8px;
   -webkit-appearance: none;
@@ -137,14 +134,8 @@ input[type='range']::-webkit-slider-thumb {
 
 input[type='range']::-webkit-slider-thumb:hover {
   background: #2980b9;
-}
+} */
 
-.slider-value {
-  min-width: 40px;
-  text-align: center;
-  font-weight: bold;
-  color: #2c3e50;
-}
 
 .results {
   background: linear-gradient(to right, #3498db, #2c3e50);
@@ -157,22 +148,38 @@ input[type='range']::-webkit-slider-thumb:hover {
 .result-item {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.result-item2 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
   align-items: center;
 }
 
+.pallet {
+  font-size: 25px;
+}
+.pallet2 {
+  
+}
 .result-label {
   font-size: 18px;
 }
-
-.result-value {
-  font-size: 20px;
+.pallet-value {
+  font-size: 25px;
   font-weight: bold;
+  color: #f1c40f;
+  font-size: 35px;
 }
 
-.monthly-payment {
+
+.pallet2-value {
+  font-size: 20px;
+  font-weight: bold;
   color: #f1c40f;
-  font-size: 26px;
+  font-size: 22px;
 }
 
 .total-amount {
@@ -181,9 +188,12 @@ input[type='range']::-webkit-slider-thumb:hover {
 }
 
 .divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.3);
-  margin: 15px 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 10px 0;
+}
+.title {
+	margin: 10px 0;
 }
 
 @media (max-width: 500px) {

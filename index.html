@@ -14,16 +14,16 @@
       <!-- <h3>Калькулятор материалов</h3> -->
       <h3>
         <span style="--i:1">К</span>
-        <span style="--i:2">А</span>
-        <span style="--i:3">Л</span>
-        <span style="--i:4">Ь</span>
-        <span style="--i:5">К</span>
-        <span style="--i:6">У</span>
-        <span style="--i:7">Л</span>
-        <span style="--i:8">Я</span>
-        <span style="--i:9">Т</span>
-        <span style="--i:10">О</span>
-        <span style="--i:11">Р</span>         
+        <span style="--i:2">а</span>
+        <span style="--i:3">л</span>
+        <span style="--i:4">ь</span>
+        <span style="--i:5">к</span>
+        <span style="--i:6">у</span>
+        <span style="--i:7">л</span>
+        <span style="--i:8">я</span>
+        <span style="--i:9">т</span>
+        <span style="--i:10">о</span>
+        <span style="--i:11">р</span>         
       </h3>
             
       <select id="machines">
@@ -46,16 +46,16 @@
     </header>    
 
     <div class="input-group">
-      <div>
+      <div class="input-group-plan">
         <label for="plan">План</label>
         <input type="number" id="plan"  min="0">
       </div>
-      <div>
+      <div class="input-group-plan">
         <label for="plan2">План2</label>
         <input type="number" id="plan2" min="0">
       </div>
       <div>     
-        <label for="tact">Циклы</label> <!-- interestRate => tact -->
+        <label for="tact">Циклы/Такты</label>
         <input type="number2" id="tact" min="0">
       </div>
     </div>        
@@ -68,32 +68,47 @@
     <div class="results">
 
 			<div class="result-item">
-        <span class="result-label">Паллет ГП готово </span>
-        <span id="pallet" class="result-value monthly-payment">0 </span>
+        <span class="pallet">Паллет ГП готово </span>
+        <span id="pallet" class="pallet-value">0 </span>
       </div>
 
-      <div class="result-item">
-        <span class="result-label">Паллет ГП нужно изготовить</span>
-        <span id="pallet2" class="result-value monthly-payment">0 </span>
+      <div class="result-item2">
+        <span class="pallet2">Паллет ГП нужно изготовить</span>
+        <span id="pallet2" class="pallet2-value">0 </span>
+      </div>
+
+      <div class="result-item2">
+        <span class="pallet2">Рассчётное время:</span>
+        <span id="pallet2" class="pallet2-value">0 </span>
       </div>
 
 			<div class="divider"></div>
 
-      <h3>Расходные материалы:</h3>
+      <h3 class="title">Расходные материалы:</h3>
             
         <div class="result-item">
-          <span class="result-label">Бабин этикеток</span>
+          <span class="result-label">Бабин этикеток (!)</span>
           <span id="sticker" class="result-value">0</span>
         </div>
             
         <div class="result-item">
-          <span class="result-label">Бабин обратн. этикеток</span>
-          <span id="sticker2" class="result-value total-amount">0 </span>
+          <span class="result-label">Бабин обратн. этикеток (!)</span>
+          <span id="sticker2" class="result-value">0 </span>
         </div>
             
         <div class="result-item">
-          <span class="result-label">Бабин фольги</span>
+          <span class="result-label">Бабин фольги (!)</span>
           <span id="foil" class="result-value">0 </span>
+        </div>
+
+        <div class="result-item">
+          <span class="result-label">Коробок с шариками</span>
+          <span id="ball" class="result-value">0 </span>
+        </div>
+
+        <div class="result-item">
+          <span class="result-label">Паллет с шариками (!)</span>
+          <span id="palletBall" class="result-value">0 </span>
         </div>
     </div>
 
@@ -112,6 +127,8 @@
     const stickerSpan = document.getElementById('sticker'); // Этикетка
     const sticker2Span = document.getElementById('sticker2'); // обратная этикетка
     const foilSpan = document.getElementById('foil'); // Фольга
+    const ballSpan = document.getElementById('ball'); // Короб шар
+    const palletBallSpan = document.getElementById('palletBall'); // Короб шар
         
     // =======> Функция для расчета
     function calculateMortgage() {
@@ -132,6 +149,8 @@
       stickerSpan.textContent = (c / 6).toFixed(1);
       sticker2Span.textContent = (c / 6).toFixed(1);
       foilSpan.textContent = (c / 12).toFixed(1);
+      ballSpan.textContent = (c / 2.1).toFixed(1);
+      palletBallSpan.textContent = (c / 20).toFixed(1);
 
       console.log(a);
       // console.log(plan);
