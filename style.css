@@ -25,6 +25,23 @@ header {
 img{
 	margin-right: 10px;
 }
+h3 span{
+  display: inline-block;
+  color: rgb(4, 11, 214);
+  text-shadow: 3px 3px 4px rgba(68, 82, 185, 0.6);
+  font-size: 20px;
+  animation: h3 3s infinite calc( .2s * var(--i));
+  -webkit-box-reflect: below 0 linear-gradient(transparent, rgb(255, 197, 197, .2));
+}
+
+@keyframes h3 {
+  0%, 20%, 100% {
+    transform: translateY(0px);
+  }
+  10% {
+    transform: translateY(-5px);
+  }
+}
 
 .calculator {
   background-color: white;
